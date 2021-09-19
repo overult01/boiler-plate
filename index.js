@@ -98,15 +98,18 @@ app.get('/api/users/auth', auth, (req, res) => {
 })
 
 
-
-user
-
-
-product
-
-
-comment
-
+// 로그아웃 라우터(로그아웃을 하는 경우는 먼저 로그인된 상태기 때문에 auth미들웨어를 넣어줌)
+app.get('/api/users/logout', auth, (req, res) => {
+   // 유저를 찾아서 그 데이터들을 업데이트 시켜주는 것.
+   User.findOneAndUpdate({ _id: req.user._id},
+      { token: "" }  // 로그인시 db에 저장되었던 토큰을 지워주는 것
+, (err, user) => {
+   if (err) return res.json({ success: false, err})
+   return res.status(200).send({
+      success: true
+      })
+   })
+})
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}`))

@@ -15,13 +15,19 @@ function LoginPage() {
         setPassword(event.currentTarget.value)
     }    
 
+    const onSubmitHandler = (event) => {
+        event.preventDefault();
+    }
+
     return (
         <div style={{
             display: 'flex', justifyContent: 'center', alignItems: 'center'
             , width: '100%', height: '100vh'
         }}>
 
-        <form style={{ display: "flex", FlexDirection: "column"}}>
+        <form style={{ display: "flex", FlexDirection: "column"}}
+            onSubmit = {onSubmitHandler}
+        >
             <label>Email</label>
             <input type="email" value={Email} onChange={onEmailHandler} />
             <label>Password</label>

@@ -1,8 +1,7 @@
-import axios from 'axios'
-import { response } from 'express';
+import axios from 'axios';
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { loginUser } from '../../../_action/user_action';
+import { loginUser } from '../../../_actions/user_action';
 
 function LoginPage(props) {
     const dispatch = useDispatch();
@@ -23,13 +22,11 @@ function LoginPage(props) {
     const onSubmitHandler = (event) => {
         event.preventDefault();
 
-        console.log('Email', Email)
-        console.log('Password', Password)
-
         let body = {
             email: Email,
             password: Password
         }
+
 
         dispatch(loginUser(body))
             .then(response => {
@@ -39,7 +36,7 @@ function LoginPage(props) {
                     alert('Error')
                 }
             })
-
+            
 
     }
 

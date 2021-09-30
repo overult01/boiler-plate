@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { RegisterUser } from '../../../_actions/user_action';
+import { registerUser } from '../../../_actions/user_action';
 
 function RegisterPage(props) {
     const dispatch = useDispatch();
@@ -15,14 +15,15 @@ function RegisterPage(props) {
         setEmail(event.currentTarget.value)
     }
 
-    const onPasswordHandler = (event) => {
-        // setEmail을 이용해서 state를 변경할 수 있음.
-        setPassword(event.currentTarget.value)
-    }    
 
     const onNameHandler = (event) => {
         // setEmail을 이용해서 state를 변경할 수 있음.
         setName(event.currentTarget.value)
+    }    
+
+    const onPasswordHandler = (event) => {
+        // setEmail을 이용해서 state를 변경할 수 있음.
+        setPassword(event.currentTarget.value)
     }    
 
     const onConfirmPasswordHandler = (event) => {
@@ -30,12 +31,10 @@ function RegisterPage(props) {
         setConfirmPassword(event.currentTarget.value)
     }    
 
-
-
     const onSubmitHandler = (event) => {
         event.preventDefault();
 
-        if(Password != ConfirmPassword) {
+        if(Password !== ConfirmPassword) {
             return alert('비밀번호와 비밀번호 확인은 같아야 합니다.')
         }
 
@@ -47,16 +46,14 @@ function RegisterPage(props) {
         }
 
 
-        dispatch(RegisterUser(body))
+        dispatch(registerUser(body))
             .then(response => {
-                if(response.payload.registerSuccess) {
-                    props.history.push('/')
+                if(response.payload.success) {
+                    props.history.push('/login')
                 } else {
-                    alert('Error')
+                    alert('Failed to sign up')
                 }
             })
-            
-
     }
 
 

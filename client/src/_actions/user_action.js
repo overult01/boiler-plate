@@ -11,18 +11,18 @@ export function loginUser(dataToSubmit) {
         .then(response => response.data )
 /* eslint-disable no-unused-vars */
     return {
-        type: "LOGIN_USER",
+        type: LOGIN_USER,
         payload: request
     }
 }
 
 
-export function RegisterUser(dataToSubmit) {
+export function registerUser(dataToSubmit) {
     const request = axios.post('/api/users/register', dataToSubmit)
         .then(response => response.data )
 /* eslint-disable no-unused-vars */
     return {
-        type: "REGISTER_USER",
+        type: REGISTER_USER,
         payload: request
     }
 }

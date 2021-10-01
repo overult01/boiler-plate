@@ -2,7 +2,8 @@ import axios from "axios";
 /* eslint-disable no-unused-vars */
 import {
     LOGIN_USER,
-    REGISTER_USER
+    REGISTER_USER,
+    AUTH_USER
 } from './types';
 
 
@@ -23,6 +24,17 @@ export function registerUser(dataToSubmit) {
 /* eslint-disable no-unused-vars */
     return {
         type: REGISTER_USER,
+        payload: request
+    }
+}
+
+
+export function auth(dataToSubmit) {
+    const request = axios.get('/api/users/auth')
+        .then(response => response.data )
+/* eslint-disable no-unused-vars */
+    return {
+        type: AUTH_USER,
         payload: request
     }
 }
